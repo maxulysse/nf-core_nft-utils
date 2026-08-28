@@ -1,0 +1,40 @@
+nextflow_process {
+
+    name "Test Process EMPTY"
+    script "../main.nf"
+    process "EMPTY"
+
+    test("Test empty outputs - stdout non empty") {
+        when {
+            process {
+                """
+                input[0] = "for stdout"
+                """
+            }
+        }
+
+        then {
+            assertAll(
+                { assert process.success },
+                { assert snapshot(sanitizeOutput(process.out)).match()}
+            )
+        }
+    }
+
+    test("Test empty outputs - empty stdout") {
+        when {
+            process {
+                """
+                input[0] = ""
+                """
+            }
+        }
+
+        then {
+            assertAll(
+                { assert process.success },
+                { assert snapshot(sanitizeOutput(process.out, unstableKeys:["empty_env"], variantsMD5Keys:["eval_empty"])).match()}
+            )
+        }
+    }
+}

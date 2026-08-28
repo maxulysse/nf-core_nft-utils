@@ -209,11 +209,14 @@ public final class OutputSanitizer {
       final Function<String, Object> applyFct) {
     if (value instanceof String) {
       String strValue = (String) value;
+      if (strValue.isEmpty()) {
+        return IGNORE;
+      }
       java.nio.file.Path path = Paths.get(strValue);
       if (Files.isDirectory(path)) {
         ArrayList<Object> fixedList = new ArrayList<>();
-        try {
-          Files.list(path)
+        try (var children = Files.list(path)) {
+          children
             .sorted()
             .forEach(child -> {
               Object parsed = recursiveParse(child.toString(), applyFct);
@@ -224,7 +227,9 @@ public final class OutputSanitizer {
 
           return fixedList;
         } catch (java.io.IOException e) {
-          throw new RuntimeException("Failed to read directory: " + path, e);
+          throw new RuntimeException(
+            "Failed to read directory: " + path, e
+          );
         }
       }
       return applyFct.apply(strValue);

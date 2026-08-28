@@ -25,7 +25,6 @@ nextflow_process {
     }
 
     test("cram - with readsMD5Keys") {
-        tag "test"
         when {
             process {
                 """
