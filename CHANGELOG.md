@@ -175,7 +175,8 @@ First release of nft-utils 🍏🚀
 
 - [#1](https://github.com/nf-core/nft-utils/pull/1) Initial repo setup (@adamrtalbot)
 - [#6](https://github.com/nf-core/nft-utils/pull/6) Add `removeNextflowVersion` function (@maxulysse)
-- [#9](https://github.com/nf-core/nft-utils/pull/9), [#11](https://github.com/nf-core/nft-utils/pull/11), [#12](https://github.com/nf-core/nft-utils/pull/12) Add documentation (@maxulysse, @adamrtalbot)
+- [#9](https://github.com/nf-core/nft-utils/pull/9), [#11](https://github.com/nf-core/nft-utils/pull/11) Add documentation (@maxulysse, @adamrtalbot)
+- [#12](https://github.com/nf-core/nft-utils/pull/12) Add ignore file (@maxulysse)
 
 ### New Contributors
 
