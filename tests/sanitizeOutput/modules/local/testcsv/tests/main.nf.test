@@ -1,0 +1,25 @@
+nextflow_process {
+
+    name "Test sanitizeOutput"
+    script "../main.nf"
+    process "TESTCSV"
+    tag "sanitizeOutput"
+    test("Default sanitize output - with csvMD5Keys") {
+        when {
+          process {
+            """
+            input[0] = [id:"test"]
+            """
+          }
+        }
+        then {
+            assert process.success
+            assert snapshot(
+              normalizeCsv(path(process.out.normalized[0][1])),
+              normalizeCsv(path(process.out.normalized[0][2]), 4),
+              normalizeCsv(path(process.out.normalized[0][3]), 2),
+              sanitizeOutput(process.out, csvMD5Keys:["normalized"], csvDoubleDigits: 5)
+            ).match()
+        }
+    }
+}

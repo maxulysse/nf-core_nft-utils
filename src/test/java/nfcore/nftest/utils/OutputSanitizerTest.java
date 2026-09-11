@@ -98,7 +98,8 @@ class OutputSanitizerTest {
                 List.of("KeyA", "KeyB"),
                 List.of("KeyC", "KeyD"),
                 List.of(),
-                List.of("KeyE", "KeyF")
+                List.of("KeyE", "KeyF"),
+                List.of("")
             )
         );
     }
@@ -111,7 +112,8 @@ class OutputSanitizerTest {
                 List.of("KeyA", "KeyB"),
                 List.of("KeyC", "KeyA"),
                 List.of(),
-                List.of("KeyA", "KeyF")
+                List.of("KeyA", "KeyF"),
+                List.of()
             )
         );
         assertEquals(

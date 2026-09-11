@@ -48,22 +48,44 @@
 			<version>5.12.2</version>
 			<scope>test</scope>
 		</dependency>
+		<dependency>
+			<groupId>org.apache.commons</groupId>
+			<artifactId>commons-csv</artifactId>
+			<version>1.14.1</version>
+		</dependency>
 	</dependencies>
 
 	<build>
 		<plugins>
 			<plugin>
-			<groupId>org.apache.maven.plugins</groupId>
-			<artifactId>maven-shade-plugin</artifactId>
-			<version>3.5.2</version>
-			<executions>
-				<execution>
-				<phase>package</phase>
-				<goals>
-					<goal>shade</goal>
-				</goals>
-				</execution>
-			</executions>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-shade-plugin</artifactId>
+				<version>3.5.2</version>
+				<executions>
+					<execution>
+					<phase>package</phase>
+					<goals>
+						<goal>shade</goal>
+					</goals>
+					<configuration>
+						<relocations>
+						<relocation>
+							<pattern>org.apache.commons.csv</pattern>
+							<shadedPattern>
+							nfcore.nftest.shaded.org.apache.commons.csv
+							</shadedPattern>
+						</relocation>
+
+						<relocation>
+							<pattern>org.apache.commons.io</pattern>
+							<shadedPattern>
+							nfcore.nftest.shaded.org.apache.commons.io
+							</shadedPattern>
+						</relocation>
+						</relocations>
+					</configuration>
+					</execution>
+				</executions>
 			</plugin>
 
 			<plugin>

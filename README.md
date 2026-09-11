@@ -17,7 +17,7 @@ mamba env create -f environment.yml
 mamba activate env_nft_utils
 
 # Compile the package
-mvn package
+mvn -B clean verify
 
 # Run all the unittest
 nf-test test --plugins target/nft-utils-*.jar --verbose --debug tests/

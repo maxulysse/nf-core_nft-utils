@@ -713,7 +713,7 @@ then {
 ```
 
 - `readsMD5Keys`: A list of keys containing genomic alignment files. MD5 sum of files with `<.bam,.sam,.cram>` extension will be replaced by an md5 computed only on the reads (i.e. equivalent of `bam(...).getReadsMD5()`) using the [`nft-bam`](https://nvnieuwk.github.io/nft-bam/dev/) plugin.
-  The latter should be added in the `plugins {}` section of the `nf-test.config`.
+  The latter should be added in the `plugins {}` section of the `nf-test.config` before nft-utils.
   For `.cram` files, you also need to pass the reference genome `.fasta` (the `.fai` is automatically detected by `nft-bam`).
 
 ```groovy
@@ -723,12 +723,22 @@ then {
 }
 ```
 
-- `variantsMD5Keys`: A list of keys containing genomic alignment files. MD5 sum of files with `<.vcf,.vcf.gz>` extension will be replaces by the reads MD5 sum using the [`nft-vcf`](https://github.com/seppinho/nft-vcf) plugin. BCF extensions are not yet supported by `nft-vcf`.
-  The latter should be added in the `plugins {}` section of the `nf-test.config`.
+- `variantsMD5Keys`: A list of keys containing genomic alignment files. MD5 sum of files with `<.vcf,.vcf.gz>` extension will be replaces by the variants MD5 sum (i.e. equivalent of `path(...).vcf.variantsMD5`) using the [`nft-vcf`](https://github.com/seppinho/nft-vcf) plugin. BCF extensions are not yet supported by `nft-vcf`.
+  The latter should be added in the `plugins {}` section of the `nf-test.config` before nft-utils.
 
 ```groovy
 then {
   assert snapshot(sanitizeOutput(process.out, variantsMD5Keys:["vcf"])).match()
+}
+```
+
+- `csvMD5Keys`: A list of keys containing flat text table. MD5 sum of files with `<.txt,.tsv,.csv>` extension will be replaces by the normalized CSV MD5 sum.
+  The CSV normalisation includes: rows and columns sorted, floating value rounded to 6 decimals, absolute path changed to file or folder only name, end line character standardized to `\n`. The internal normalisation is also exposed for debugging use with `normalizeCsv(path(process.out.csv[0][1]))`.
+  This will give back the normalized concatenated string of the whole csv. You can specify the number of digits you want to round to with `csvDoubleDigits` (default is 6 decimals).
+
+```groovy
+then {
+  assert snapshot(sanitizeOutput(process.out, csvMD5Keys:["csv"], csvDoubleDigits: 4)).match()
 }
 ```
 

@@ -35,6 +35,9 @@ import org.yaml.snakeyaml.Yaml;
  */
 public final class Methods {
 
+  /** Default number of decimal places for CSV double values. */
+  private static final int DEFAULT_CSV_DOUBLE_DIGITS = 6;
+
   /**
    * Prevents instantiation of this utility class.
    */
@@ -1057,6 +1060,28 @@ public final class Methods {
       final HashMap<String, Object> options,
       final TreeMap<String, Object> channel) {
     return OutputSanitizer.sanitizeOutput(options, channel);
+  }
+
+  /**
+   * Normalizes a CSV file and returns its canonical representation.
+   *
+   * @param path The CSV file to normalize.
+   * @param digits the number of decimal places to retain for floating-point
+   * values
+   * @return The normalized CSV content.
+   */
+  public static String normalizeCsv(final Path path, final int digits) {
+    return CsvUtils.normalizeCsv(path, digits);
+  }
+
+  /**
+   * Normalizes a CSV file and returns its canonical representation.
+   *
+   * @param path The CSV file to normalize.
+   * @return The normalized CSV content.
+   */
+  public static String normalizeCsv(final Path path) {
+    return normalizeCsv(path, DEFAULT_CSV_DOUBLE_DIGITS);
   }
 
   /**

@@ -6,6 +6,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ## 1.2.0dev
 
 - Fix empty value usage in `sanitizeOutput()`. See [this issue](https://github.com/nf-core/nft-utils/issues/84)
+- Add `csvMD5Keys` for `sanitizeOutput` so that md5 is the one from the normalized CSV.
 
 ## 1.1.1
 
