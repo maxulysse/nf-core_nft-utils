@@ -2,9 +2,8 @@ package nfcore.nftest.utils;
 
 import java.io.File;
 import java.io.IOException;
-import java.io.UnsupportedEncodingException;
 import java.nio.file.Path;
-import java.util.ArrayList;
+import java.security.NoSuchAlgorithmException;
 import java.util.HashMap;
 import java.util.LinkedHashMap;
 import java.util.List;
@@ -204,11 +203,10 @@ public final class Methods {
    *
    * @param input The list of objects to include in the MD5 calculation.
    * @return The MD5 digest as a hexadecimal string.
-   * @throws UnsupportedEncodingException If UTF-8 encoding is not supported.
+   * @throws NoSuchAlgorithmException If the MD5 algorithm is not available.
    */
-  public static String listToMD5(
-      final ArrayList<Object> input)
-      throws UnsupportedEncodingException {
+  public static String listToMD5(final List<?> input)
+      throws NoSuchAlgorithmException {
     return HashUtils.listToMD5(input);
   }
 

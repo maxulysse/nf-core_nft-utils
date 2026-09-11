@@ -179,6 +179,17 @@ public final class NextflowOutputFilter {
 
       filtered = filterLinePattern(filtered, capturedRunName);
 
+      if (additionalPatterns != null && !additionalPatterns.isEmpty()) {
+        for (String pattern : additionalPatterns) {
+          try {
+            filtered = filtered.replaceAll(pattern, "[FILTERED]");
+          } catch (Exception e) {
+            System.err.println("Warning: Invalid regex pattern '" + pattern
+                + "': " + e.getMessage());
+          }
+        }
+      }
+
       if (!filtered.trim().isEmpty()) {
         filteredLines.add(filtered);
       }
