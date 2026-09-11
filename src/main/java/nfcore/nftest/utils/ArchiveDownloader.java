@@ -98,33 +98,26 @@ public final class ArchiveDownloader {
     }
 
     ProcessBuilder pb = new ProcessBuilder("sh", "-c", cmd);
+    Utils.ProcessResult result;
     try {
-      Utils.ProcessResult result = Utils.runProcess(pb);
-      if (result.getExitCode() != 0) {
-        System.err
-            .println(
-              "Error downloading and extracting file "
-              + urlString + ": exit code "
-              + result.getExitCode() + "\n"
-            );
-        System.out.println("Bash command: \n" + cmd);
-        System.err.println("command output: \n");
-        System.err.println(result.getStderr());
-      } else {
-        System.out.println(
-          "Successfully downloaded and extracted file: "
-          + urlString
-        );
-      }
-    } catch (IOException | InterruptedException e) {
-      System.err.println(
-        "Error downloading and extracting file "
-        + urlString + ": " + e.getMessage()
+      result = Utils.runProcess(pb);
+    } catch (InterruptedException e) {
+      Thread.currentThread().interrupt();
+      throw new IOException(
+        "Interrupted while downloading " + urlString, e
       );
-      if (e instanceof InterruptedException) {
-        Thread.currentThread().interrupt();
-      }
     }
+    if (result.getExitCode() != 0) {
+      throw new IOException(
+        "Failed to download and extract " + urlString
+        + ": exit code " + result.getExitCode() + "\n"
+        + result.getStderr()
+      );
+    }
+    System.out.println(
+      "Successfully downloaded and extracted file: "
+      + urlString
+    );
   }
 
   /**
@@ -157,14 +150,11 @@ public final class ArchiveDownloader {
     try {
       Utils.ProcessResult result = Utils.runProcess(pb);
       if (result.getExitCode() != 0) {
-        System.err.println(
-          "Error downloading file " + urlString
+        throw new IOException(
+          "Failed to download " + urlString
           + ": exit code " + result.getExitCode() + "\n"
+          + result.getStderr()
         );
-        System.out.println("Command: " + String.join(" ", pb.command()));
-        System.err.println("command output: \n");
-        System.err.println(result.getStderr());
-        return;
       }
       pb = new ProcessBuilder(
           "unzip",
@@ -174,27 +164,21 @@ public final class ArchiveDownloader {
           destPath);
       result = Utils.runProcess(pb);
       if (result.getExitCode() != 0) {
-        System.err.println(
-          "Error extracting zip " + tempFile
+        throw new IOException(
+          "Failed to extract zip " + tempFile
           + ": exit code " + result.getExitCode() + "\n"
-        );
-        System.out.println("Command: " + String.join(" ", pb.command()));
-        System.err.println("command output: \n");
-        System.err.println(result.getStderr());
-      } else {
-        System.out.println(
-          "Successfully downloaded and extracted file: "
-          + urlString
+          + result.getStderr()
         );
       }
-    } catch (IOException | InterruptedException e) {
-      System.err.println(
-        "Error downloading and extracting file "
-        + urlString + ": " + e.getMessage()
+      System.out.println(
+        "Successfully downloaded and extracted file: "
+        + urlString
       );
-      if (e instanceof InterruptedException) {
-        Thread.currentThread().interrupt();
-      }
+    } catch (InterruptedException e) {
+      Thread.currentThread().interrupt();
+      throw new IOException(
+        "Interrupted while downloading " + urlString, e
+      );
     } finally {
       try {
         Files.deleteIfExists(tempFile);

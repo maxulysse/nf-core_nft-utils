@@ -21,7 +21,8 @@ import java.util.TreeMap;
 public final class Methods {
 
   /** Default number of decimal places for CSV double values. */
-  private static final int DEFAULT_CSV_DOUBLE_DIGITS = 6;
+  private static final int DEFAULT_CSV_DOUBLE_DIGITS =
+    CsvUtils.DEFAULT_DOUBLE_DIGITS;
 
   /**
    * Prevents instantiation of this utility class.
@@ -94,7 +95,7 @@ public final class Methods {
    * @return A list of files found in the directory.
    * @throws IOException If an error occurs while traversing the directory.
    */
-  public static List getAllFilesFromDir(
+  public static List<?> getAllFilesFromDir(
       final String path)
       throws IOException {
     return FileTraversalUtils.getAllFilesFromDir(path);
@@ -109,7 +110,7 @@ public final class Methods {
    * @throws IOException If an error occurs while traversing the directory.
    * @throws IllegalArgumentException If {@code outdir} is invalid.
    */
-  public static List getAllFilesFromDir(
+  public static List<?> getAllFilesFromDir(
       final LinkedHashMap<String, Object> options,
       final String outdir)
       throws IOException {
@@ -145,7 +146,8 @@ public final class Methods {
    * @param channel the channel output to process
    * @return a flattened list containing only absolute file paths
    */
-  public static List getAllFilesFromChannel(final Object channel) {
+  public static List<String> getAllFilesFromChannel(
+      final Object channel) {
     return FileTraversalUtils.getAllFilesFromChannel(channel);
   }
 

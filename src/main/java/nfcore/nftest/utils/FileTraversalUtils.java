@@ -38,7 +38,7 @@ public final class FileTraversalUtils {
    * @return A list of files found in the directory.
    * @throws IOException If an error occurs while traversing the directory.
    */
-  public static List getAllFilesFromDir(
+  public static List<?> getAllFilesFromDir(
       final String path)
       throws IOException {
     return getAllFilesFromDir(new LinkedHashMap<String, Object>(), path);
@@ -56,7 +56,7 @@ public final class FileTraversalUtils {
    * @throws IllegalArgumentException If {@code outdir} is null, empty, does
    *     not exist, or is not a directory.
    */
-  public static List getAllFilesFromDir(
+  public static List<?> getAllFilesFromDir(
       final LinkedHashMap<String, Object> options,
       final String outdir)
       throws IOException {
@@ -255,8 +255,9 @@ public final class FileTraversalUtils {
    * @param channel the channel output to process
    * @return a flattened list containing only absolute file paths
    */
-  public static List getAllFilesFromChannel(final Object channel) {
-    List result = new ArrayList<>();
+  public static List<String> getAllFilesFromChannel(
+      final Object channel) {
+    List<String> result = new ArrayList<>();
 
     if (channel == null) {
       return result;
@@ -275,7 +276,7 @@ public final class FileTraversalUtils {
    */
   static void flattenAndFilter(
       final Object obj,
-      final List result) {
+      final List<String> result) {
     if (obj == null) {
       return;
     }

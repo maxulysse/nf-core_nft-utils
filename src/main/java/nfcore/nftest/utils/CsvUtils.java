@@ -23,6 +23,9 @@ import org.apache.commons.csv.CSVRecord;
  */
 public final class CsvUtils {
 
+  /** Default number of decimal places for CSV double values. */
+  public static final int DEFAULT_DOUBLE_DIGITS = 6;
+
   /**
    * Prevents instantiation of this utility class.
    */

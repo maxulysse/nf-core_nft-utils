@@ -18,7 +18,8 @@ import java.util.stream.Collectors;
 public final class OutputSanitizer {
 
   /** Default number of decimal places for CSV double values. */
-  private static final int DEFAULT_CSV_DOUBLE_DIGITS = 6;
+  private static final int DEFAULT_CSV_DOUBLE_DIGITS =
+    CsvUtils.DEFAULT_DOUBLE_DIGITS;
 
   /**
    * Prevents instantiation of this utility class.
