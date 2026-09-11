@@ -141,7 +141,6 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Added
 
-- [#15](https://github.com/nf-core/nft-utils/pull/15) Add Maven to Gitpod install (@nvnieuwk).
 - [#18](https://github.com/nf-core/nft-utils/pull/18) Add wrapper functions for `getAllFilesFromDir` with named parameters (@lukfor).
 - [#20](https://github.com/nf-core/nft-utils/pull/20) Add `removeFromYamlMap` (@maxulysse).
 - [#21](https://github.com/nf-core/nft-utils/pull/21) Add `include` in `getAllFilesFromDir` (@maxulysse).
@@ -153,18 +152,19 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### New Contributors
 
 - @lukfor
-- @nvnieuwk
 
 ## 0.0.2
 
 ### Added
 
 - [#7](https://github.com/nf-core/nft-utils/pull/7) Add recursive file listing method (@JonathanManning).
+- [#15](https://github.com/nf-core/nft-utils/pull/15) Add Maven to Gitpod install (@nvnieuwk).
 - [#16](https://github.com/nf-core/nft-utils/pull/16) Add `getRelativePath()` function (@maxulysse).
 
 ### New Contributors
 
 - @JonathanManning
+- @nvnieuwk
 
 ## 0.0.1
 
