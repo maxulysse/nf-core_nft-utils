@@ -157,6 +157,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Added
 
+- [ad18623](https://github.com/nf-core/nft-utils/commit/ad18623) Add recursive file listing method (@JonathanManning).
 - [#15](https://github.com/nf-core/nft-utils/pull/15) Add Maven to Gitpod install (@nvnieuwk).
 - [#16](https://github.com/nf-core/nft-utils/pull/16) Add `getRelativePath()` function (@maxulysse).
 
