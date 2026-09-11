@@ -157,7 +157,6 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Added
 
-- [#7](https://github.com/nf-core/nft-utils/pull/7) Add recursive file listing method (@JonathanManning).
 - [#15](https://github.com/nf-core/nft-utils/pull/15) Add Maven to Gitpod install (@nvnieuwk).
 - [#16](https://github.com/nf-core/nft-utils/pull/16) Add `getRelativePath()` function (@maxulysse).
 
@@ -175,7 +174,7 @@ First release of nft-utils 🍏🚀
 - [#1](https://github.com/nf-core/nft-utils/pull/1) Initial repo setup (@adamrtalbot).
 - [#6](https://github.com/nf-core/nft-utils/pull/6) Add `removeNextflowVersion` function (@maxulysse).
 - [#7](https://github.com/nf-core/nft-utils/pull/7) Add `getAllFilesFromDir` function (@maxulysse).
-- [#9](https://github.com/nf-core/nft-utils/pull/9), [#11](https://github.com/nf-core/nft-utils/pull/11), [#12](https://github.com/nf-core/nft-utils/pull/12), [#13](https://github.com/nf-core/nft-utils/pull/13) Add documentation (@maxulysse).
+- [#9](https://github.com/nf-core/nft-utils/pull/9), [#11](https://github.com/nf-core/nft-utils/pull/11), [#12](https://github.com/nf-core/nft-utils/pull/12), [#13](https://github.com/nf-core/nft-utils/pull/13) Add documentation (@maxulysse, @adamrtalbot).
 
 ### New Contributors
 
