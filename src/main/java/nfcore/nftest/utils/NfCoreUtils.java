@@ -176,11 +176,6 @@ public final class NfCoreUtils {
   }
 
   /**
-  * Bit mask used to convert a signed byte to its unsigned representation.
-  */
-  private static final int BYTE_MASK = 0xff;
-
-  /**
    * Create a cache key for a module based on its parameters.
    *
    * @param name The module name
@@ -201,20 +196,7 @@ public final class NfCoreUtils {
     }
 
     try {
-      java.security.MessageDigest md = java.security.MessageDigest
-        .getInstance("MD5");
-      byte[] messageDigest = md.digest(
-        key.toString().getBytes(StandardCharsets.UTF_8)
-      );
-      StringBuilder hexString = new StringBuilder();
-      for (byte b : messageDigest) {
-        String hex = Integer.toHexString(BYTE_MASK & b);
-        if (hex.length() == 1) {
-          hexString.append('0');
-        }
-        hexString.append(hex);
-      }
-      return hexString.toString();
+      return HashUtils.md5Hex(key.toString());
     } catch (java.security.NoSuchAlgorithmException e) {
       throw new RuntimeException(
         "MD5 algorithm not available on this system", e
